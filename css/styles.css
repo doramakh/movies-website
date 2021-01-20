@@ -12,7 +12,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -94,12 +94,13 @@ body {
 }
 
 .site-header__button {
-  border: 2px dotted crimson;
+  border: 1px dotted crimson;
   padding: 2px 12px;
   border-radius: 15px;
   background-color: transparent;
   color: #eeeeee;
   transition: 0.3s background-color ease-in-out;
+  font-size: 14px;
 }
 
 .site-header__button:nth-child(2) {
@@ -124,8 +125,8 @@ body {
 .bookmark-btn::before {
   content: '';
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-right: 5px;
   background-image: url('../img/bookmark.png');
   background-repeat: no-repeat;
@@ -138,9 +139,9 @@ body {
   align-items: center;
   justify-content: center;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px 0;
+  padding: 6px 25px;
+  margin-right: 15px;
+  margin-left: 15px;
   background-color:  rgba(220, 20, 60, 0.721);
   border-radius: 5px;
 }
@@ -198,4 +199,27 @@ body {
 
 .search-btn:focus {
   outline: 0;
+}
+
+.lists-wrapper {
+  display: flex;
+  padding: 30px 0;
+}
+
+.sort-list {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 60px;
+  background-color: rgba(220, 20, 60, 0.719);
+}
+
+.sort-item {
+  margin-bottom: 12px;
+  color: #eee;
+  border: 1px dashed #eee;
+  background-color: transparent;
+  cursor: pointer
 }
