@@ -132,3 +132,13 @@ body {
   background-size: contain;
   background-position: center;
 }
+
+.search-form {
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
