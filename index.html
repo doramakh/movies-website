@@ -25,37 +25,41 @@
     </div>
   </header>
   <main class="site-main">
-    <form class="search-form" action="#">
-      <input type="text" placeholder="Enter the title" name="title" aria-label="movie-title" value="title" autocomplete="off">
-      <input type="text" placeholder="Enter the year" name="year" aria-label="movie-year" value="year" autocomplete="off">
-      <select name="movie-category" id="category">
-        <option value="initial" selected disabled>Choose category</option>
-      </select>
-      <select name="movie-category" id="category">
-        <option value="initial" selected disabled>Rating</option>
-      </select>
-      <button class="search-btn" type="submit">Search</button>
-    </form>
-    
-    <ul class="sort-list">
-      <li class="sort-item">A-Z</li>
-      <li class="sort-item">A-Z</li>
-      <li class="sort-item">A-Z</li>
-      <li class="sort-item">A-Z</li>
-      <li class="sort-item">A-Z</li>
-      <li class="sort-item">A-Z</li>
-    </ul>
-    
-    <ul class="movies-list">
-      <li class="movies-item">
-        <img src="img/movie-logo.png" alt="" width="180" height="auto">
-        <div class="movie-info">
-          <p class="movie-title">Lorem, ipsum dolor.</p>
-          <span class="movie-year">2000</span>
-          <span class="movie-rating">8.0</span>
-        </div>
-      </li>
-    </ul>
+    <div class="container">
+      <form class="search-form" action="#">
+        <input class="title-input" type="text" placeholder="Enter the title" name="title" aria-label="movie-title" autocomplete="off">
+        <input class="year-input" type="text" placeholder="Enter the year" name="year" aria-label="movie-year" autocomplete="off">
+        <select class="category-select" name="movie-category" id="category">
+          <option value="initial" selected disabled>Choose category</option>
+        </select>
+        <select class="rating-select" name="movie-rating" id="rating">
+          <option value="initial" selected disabled>Rating</option>
+        </select>
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+      
+      <div class="lists-wrapper">
+        <ul class="sort-list">
+          <li class="sort-item">A-Z</li>
+          <li class="sort-item">A-Z</li>
+          <li class="sort-item">A-Z</li>
+          <li class="sort-item">A-Z</li>
+          <li class="sort-item">A-Z</li>
+          <li class="sort-item">A-Z</li>
+        </ul>
+        
+        <ul class="movies-list">
+          <li class="movies-item">
+            <img src="img/movie-logo.png" alt="" width="180" height="auto">
+            <div class="movie-info">
+              <p class="movie-title">Lorem, ipsum dolor.</p>
+              <span class="movie-year">2000</span>
+              <span class="movie-rating">8.0</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </main>
   
   

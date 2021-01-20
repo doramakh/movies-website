@@ -42,7 +42,7 @@ body {
 }
 
 .container {
-  max-width: 1148px;
+  max-width: 1448px;
   padding: 0 24px;
   margin-left: auto;
   margin-right: auto;
@@ -136,9 +136,66 @@ body {
 .search-form {
   display: flex;
   align-items: center;
+  justify-content: center;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color:  rgba(220, 20, 60, 0.721);
+  border-radius: 5px;
+}
+
+.search-form input,
+.search-form select {
+  display: block;
+  border: none;
+  background-color: transparent;
+  color: #bbb;
+  margin-right: 20px;
+}
+
+.search-form input {
+  padding: 0 12px;
+}
+
+.search-form input::placeholder {
+  color: #bbb;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+  outline-width: 1px;
+  outline-color: #bbb;
+  outline-style: dotted;
+}
+
+.title-input {
+  width: 300px;
+}
+
+.year-input {
+  max-width: 120px;
+}
+
+.search-btn {
+  display: inline-block;
+  padding: 2px 12px;
+  border: 1px dotted #bbb;
+  border-radius: 10px;
+  color: #eeeeee;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #eee;
+  color: crimson;
+}
+
+.search-btn:active {
+  opacity: 0.6;
+}
+
+.search-btn:focus {
+  outline: 0;
 }
