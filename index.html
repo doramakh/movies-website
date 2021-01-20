@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="page-body">
-
+  
   <header class="site-header">
     <div class="container header-container">
       <a class="site__logo-link" href="index.html">
         <img class="site__logo-img" src="img/movie-logo.png" alt="Logo" width="75" height="67">
       </a>
-
+      
       <div class="site-header__buttons">
         <button type="button" class="site-header__button bookmark-btn">Bookmarks</button>
         <button type="button" class="site-header__button">Log in</button>
@@ -36,13 +36,29 @@
       </select>
       <button class="search-btn" type="submit">Search</button>
     </form>
-
-    <ul class="sort-list"></ul>
-
-    <ul class="movies-list"></ul>
+    
+    <ul class="sort-list">
+      <li class="sort-item">A-Z</li>
+      <li class="sort-item">A-Z</li>
+      <li class="sort-item">A-Z</li>
+      <li class="sort-item">A-Z</li>
+      <li class="sort-item">A-Z</li>
+      <li class="sort-item">A-Z</li>
+    </ul>
+    
+    <ul class="movies-list">
+      <li class="movies-item">
+        <img src="img/movie-logo.png" alt="" width="180" height="auto">
+        <div class="movie-info">
+          <p class="movie-title">Lorem, ipsum dolor.</p>
+          <span class="movie-year">2000</span>
+          <span class="movie-rating">8.0</span>
+        </div>
+      </li>
+    </ul>
   </main>
   
-
+  
   <script src="js/jquery-3.5.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
