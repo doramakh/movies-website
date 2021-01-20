@@ -16,7 +16,7 @@
       <a class="site__logo-link" href="index.html">
         <img class="site__logo-img" src="img/movie-logo.png" alt="Logo" width="75" height="67">
       </a>
-
+      
       <form class="search-form" action="#">
         <input class="title-input" type="text" placeholder="Enter the title" name="title" aria-label="movie-title" autocomplete="off">
         <input class="year-input" type="text" placeholder="Enter the year" name="year" aria-label="movie-year" autocomplete="off">
@@ -45,18 +45,22 @@
         
         <ul class="movies-list">
           <li class="movies-item">
-            <img src="img/movie-logo.png" alt="" width="180" height="auto">
-            <div class="movie-info">
-              <p class="movie-title">Lorem, ipsum dolor.</p>
-              <span class="movie-year">2000</span>
-              <span class="movie-rating">8.0</span>
-            </div>
-            <div class="movie-links">
-              <a class="movie-link more-info-link" href="#">More info</a>
-              <a class="movie-link trailer-link" href="#">Watch trailer</a>
-              <button class="movie-link add-bookmark-btn">
-                <span></span>
-              </button>
+            <a class="movie-link" href="#">
+              <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+              
+              <div class="movie-info">
+                <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
+                <div class="info-wrapper">
+                  <span class="movie-year">2000</span>
+                  <span class="movie-rating">8.0</span>
+                </div>
+              </div>
+            </a>
+            
+            <div class="movie-secondary">
+              <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
+              <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
+              <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
             </div>
           </li>
         </ul>
