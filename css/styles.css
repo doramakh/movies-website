@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -172,10 +173,6 @@ body {
 
 .title-input {
   width: 300px;
-}
-
-.year-input {
-  max-width: 120px;
 }
 
 .search-btn {
@@ -375,8 +372,6 @@ body {
 }
 
 .page-link {
-  background-color: crimson;
-  color: #eee;
   transition: 0.3s background-color ease-in-out;
 }
 
@@ -442,4 +437,26 @@ body {
 
 .modal-close-btn:focus {
   outline: 0;
+}
+
+.no-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  color: crimson;
+  padding: 5px 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result-count__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
