@@ -45,7 +45,9 @@ var elratingSelect = $_('.rating-select');
 var elNoResult = $_('.no-result ');
 
 var elPagination = $_('.pagination');
-var elCount = $_('.result-count')
+var elCount = $_('.result-count');
+
+var elSorting = $_('.sort-list')
 
 // Push category names from movie object to categories array
 for (var movie of movies) {
@@ -67,6 +69,60 @@ for (var category of categories) {
 
 // FUNCTIONS 
 
+var sortMoviesAZ = data => {
+  data.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1;
+    }
+    return 0;
+  });
+};
+
+var sortMoviesZA = data => {
+  data.sort((a, b) => {
+    if (a.title < b.title) {
+      return 1;
+    } else if (a.title > b.title) {
+      return -1;
+    }
+    return 0;
+  });
+};
+
+var sortMoviesRatingDesc = data => {
+  data.sort((a, b) => a.imdbRating - b.imdbRating);
+};
+
+var sortMoviesRatingAsc = data => {
+  data.sort((a, b) => b.imdbRating - a.imdbRating);
+};
+
+var sortMoviesYearDesc = data => {
+  data.sort((a, b) => a.year - b.year);
+};
+
+var sortMoviesYearAsc = data => {
+  data.sort((a, b) => b.year - a.year);
+};
+
+var sortMovies = (data, sortType) => {
+  if (sortType === 'az') {
+    sortMoviesAZ(data);
+  } else if (sortType === 'za') {
+    sortMoviesZA(data);
+  } else if (sortType === 'lower-rating') {
+    sortMoviesRatingDesc(data);
+  } else if (sortType === 'higher-rating') {
+    sortMoviesRatingAsc(data);
+  } else if (sortType === 'older') {
+    sortMoviesYearDesc(data);
+  } else if (sortType === 'newer') {
+    sortMoviesYearAsc(data);
+  }
+};
+
 var searchMovies = (titleRegex = '', genre = 'All') => {
   return movies.filter(movie => {
     var doesMatchCategory = genre === 'All' || movie.categories.includes(genre);
@@ -78,12 +134,6 @@ var getPage = pageNumber => {
   var startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
   var endIndex = startIndex + ITEMS_PER_PAGE;
   return foundMovies.slice(startIndex, endIndex);
-};
-
-var getTopMoviesPage = pageNumber => {
-  var startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
-  var endIndex = startIndex + ITEMS_PER_PAGE;
-  return topHundrendMovies.slice(startIndex, endIndex);
 };
 
 createMovieCard = movie => {
@@ -103,7 +153,7 @@ createMovieCard = movie => {
   }
   
   return elMovie;
-}
+};
 
 var displayMovies = movies => {
   elMoviesList.innerHTML = '';
@@ -179,4 +229,70 @@ elPagination.addEventListener('click', evt => {
     
     window.scrollTo(0, 0);
   };
+});
+
+$_('.az-button').addEventListener('click', () => {
+    var sorting = $_('.az-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
+});
+
+$_('.za-button').addEventListener('click', () => {
+    var sorting = $_('.za-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
+});
+
+$_('.newer-button').addEventListener('click', () => {
+    var sorting = $_('.newer-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
+});
+
+$_('.older-button').addEventListener('click', () => {
+    var sorting = $_('.older-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
+});
+
+$_('.higher-button').addEventListener('click', () => {
+    var sorting = $_('.higher-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
+});
+
+$_('.lower-button').addEventListener('click', () => {
+    var sorting = $_('.lower-button').dataset.value;
+    
+    elMoviesList.innerHTML = '';
+    
+    sortMovies(foundMovies, sorting);
+    displayMovies(getPage(1));
+    displayPagination(foundMovies)
+    console.log('ishladi')
 });
