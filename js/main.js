@@ -24,4 +24,6 @@ var getYoutubeVideoBigThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/
 
 var getYoutubeVideoThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-
+// CREATE AN ARRAY OF TOP 100 MOVIES
+var topHundrendMovies = movies.slice().sort((a,b) => a.imdbRating - b.imdbRating).slice(0, 100);
+console.log(topHundrendMovies)
