@@ -18,12 +18,51 @@ var createElement = function (element, elementClass, text) {
   };
 };
 
-var getYoutubeVideoLink = videoId => `https://youtube.com/watch?v=${videoId}`;
+// GLOBAL VARIABLES
 
-var getYoutubeVideoBigThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+// variable for user input (title) source
+var titleRegex = '';
 
-var getYoutubeVideoThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+// DOM
 
-// CREATE AN ARRAY OF TOP 100 MOVIES
-var topHundrendMovies = movies.slice().sort((a,b) => a.imdbRating - b.imdbRating).slice(0, 100);
-console.log(topHundrendMovies)
+// create an array of top 100 movies
+var topHundrendMovies = movies.slice().sort((a,b) => b.imdbRating - a.imdbRating).slice(0, 100);
+
+var elMoviesList = $_('.movies-list');
+var elMovieCardTemplate = $_('.movie-card-template').content;
+
+// FUNCTIONS 
+
+createMovieCard = movie => {
+   elMovie = elMovieCardTemplate.cloneNode(true);
+
+   elMovie.querySelector('.movie-thumbnail').src = movie.smallPoster;
+   elMovie.querySelector('.movie-thumbnail').alt = `Poster of ${movie.title}`;
+   elMovie.querySelector('.movie-year').textContent = movie.year;
+   elMovie.querySelector('.movie-rating').textContent = movie.imdbRating;
+   
+   var elMovieTitle = elMovie.querySelector('.movie-title').textContent = movie.title;
+
+   if (titleRegex.source === '(?:)') {
+    elMovieTitle.textContent = movie.title;
+  } else {
+    elMovieTitle.innerHTML = movie.title.replace(titleRegex, `<mark class="px-0">${movie.title.match(titleRegex)}</mark>`);
+  }
+
+  return elMovie;
+}
+
+var displayMovies = movies => {
+  elMoviesList.innerHTML = '';
+
+  elMovieFragment = document.createDocumentFragment();
+  movies.forEach(movie => {
+    elMovieFragment.appendChild(createMovieCard(movie));
+  });
+
+  elMoviesList.appendChild(elMovieFragment);
+}
+
+// Display to 100 movies 
+
+displayMovies(topHundrendMovies);
