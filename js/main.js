@@ -18,4 +18,10 @@ var createElement = function (element, elementClass, text) {
   };
 };
 
+var getYoutubeVideoLink = videoId => `https://youtube.com/watch?v=${videoId}`;
+
+var getYoutubeVideoBigThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+
+var getYoutubeVideoThumbnail = videoId => `http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
 
