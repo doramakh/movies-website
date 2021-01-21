@@ -12,7 +12,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -226,10 +226,12 @@ body {
   cursor: pointer;
 }
 
-.movies-list {
-  padding: 0 28px;
-  margin: 0;
+.movies-list-wrapper {
   width: calc(100% - 60px);
+}
+
+.movies-list {
+  padding: 0 15px;
   list-style-type: none;
   display: flex;
   justify-content: center;
@@ -279,13 +281,27 @@ body {
 }
 
 .movie-year {
-  display: block;
-  max-width: 50px;
+  display: flex;
+  align-items: center;
+  max-width: 66px;
+  font-size: 12px;
   text-align: center;
   background-color: teal;
-  padding: 1px 3px;
-  border-radius: 9px;
+  padding: 3px 5px;
+  border-radius: 12px;
   margin-bottom: 7px;
+}
+
+.movie-year::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-image: url('../img/schedule.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .movie-rating {
@@ -345,4 +361,85 @@ body {
   cursor: pointer;
 }
 
+.nav-menu-wrapper {
+  width: calc(100% - 60px);
+  display: flex;
+  align-items: center;
+}
 
+.nav-menu {
+  max-width: 100%;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-link {
+  background-color: crimson;
+  color: #eee;
+  transition: 0.3s background-color ease-in-out;
+}
+
+.page-link:hover {
+  background-color: #ffc107;
+  color: #eee;
+}
+
+.modal-section{
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  background-color: #e6ad00;
+  color: rgb(1, 29, 56);
+  border-radius: 5px;
+}
+
+.modal-categories {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  list-style-type: none;
+}
+
+.modal-category {
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.modal-info {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.modal-duration {
+  margin-right: 18px;
+}
+
+.modal-close-btn {
+  display: block;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  color: darkgreen;
+  border: 2px dotted forestgreen;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  background-color: forestgreen;
+  color: #eee;
+}
+
+.modal-close-btn:active {
+  opacity: 0.6;
+}
+
+.modal-close-btn:focus {
+  outline: 0;
+}

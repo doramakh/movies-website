@@ -19,7 +19,7 @@
       
       <form class="search-form" action="#">
         <input class="title-input" type="text" placeholder="Enter the title" name="title" aria-label="movie-title" autocomplete="off">
-        <input class="year-input" type="text" placeholder="Enter the year" name="year" aria-label="movie-year" autocomplete="off">
+        <input class="year-input" type="number" placeholder="year" name="year" aria-label="movie-year" min="1900">
         <select class="category-select" name="movie-category" id="category">
           <option value="initial" selected disabled>Choose category</option>
         </select>
@@ -36,6 +36,8 @@
       </div>
     </div>
   </header>
+
+
   <main class="site-main">
     <div class="container">      
       <div class="lists-wrapper">
@@ -43,83 +45,117 @@
           <button class="sort-item">A-Z</button>
         </div>
         
-        <ul class="movies-list">
-          <li class="movies-item">
-            <a class="movie-link" href="#">
-              <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+        <div class="movies-list-wrapper">
+          <ul class="movies-list">
+            <li class="movies-item">
+              <a class="movie-link" href="#">
+                <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+                
+                <div class="movie-info">
+                  <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
+                  <span class="movie-year">2000</span>
+                  <span class="movie-rating">8.0</span>
+                </div>
+              </a>
               
-              <div class="movie-info">
-                <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
-                <span class="movie-year">2000</span>
-                <span class="movie-rating">8.0</span>
+              <div class="movie-secondary">
+                <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
+                <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
+                <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
               </div>
-            </a>
-            
-            <div class="movie-secondary">
-              <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
-              <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
-              <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
-            </div>
-          </li>
-          <li class="movies-item">
-            <a class="movie-link" href="#">
-              <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+            </li>
+            <li class="movies-item">
+              <a class="movie-link" href="#">
+                <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+                
+                <div class="movie-info">
+                  <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
+                  <span class="movie-year">2000</span>
+                  <span class="movie-rating">8.0</span>
+                </div>
+              </a>
               
-              <div class="movie-info">
-                <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
-                <span class="movie-year">2000</span>
-                <span class="movie-rating">8.0</span>
+              <div class="movie-secondary">
+                <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
+                <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
+                <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
               </div>
-            </a>
-            
-            <div class="movie-secondary">
-              <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
-              <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
-              <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
-            </div>
-          </li>
-          <li class="movies-item">
-            <a class="movie-link" href="#">
-              <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+            </li>
+            <li class="movies-item">
+              <a class="movie-link" href="#">
+                <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+                
+                <div class="movie-info">
+                  <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
+                  <span class="movie-year">2000</span>
+                  <span class="movie-rating">8.0</span>
+                </div>
+              </a>
               
-              <div class="movie-info">
-                <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
-                <span class="movie-year">2000</span>
-                <span class="movie-rating">8.0</span>
+              <div class="movie-secondary">
+                <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
+                <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
+                <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
               </div>
-            </a>
-            
-            <div class="movie-secondary">
-              <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
-              <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
-              <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
-            </div>
-          </li>
-          <li class="movies-item">
-            <a class="movie-link" href="#">
-              <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+            </li>
+            <li class="movies-item">
+              <a class="movie-link" href="#">
+                <img class="movie-thumbnail" src="img/movie-logo.png" alt="" width="200" height="280">
+                
+                <div class="movie-info">
+                  <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
+                  <span class="movie-year">2000</span>
+                  <span class="movie-rating">8.0</span>
+                </div>
+              </a>
               
-              <div class="movie-info">
-                <p class="movie-title">Lorem, ipsum dolor. Lorem, ipsum dolor.</p>
-                <span class="movie-year">2000</span>
-                <span class="movie-rating">8.0</span>
+              <div class="movie-secondary">
+                <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
+                <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
+                <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
               </div>
-            </a>
-            
-            <div class="movie-secondary">
-              <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
-              <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
-              <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+          
+          <div class="nav-menu-wrapper">
+            <nav class="nav-menu" aria-label="pagination-menu">
+              <ul class="pagination pagination-sm">
+                <li class="page-item"><a class="page-link" href="#" data-page-number="">1</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+
+  <section class="modal-section d-none">
+    <h3 class="modal-tile h4"></h3>
+    <p class="modal-summary"></p>
+    <ul class="modal-categories">
+      <li class="modal-category alert-secondary"></li>
+    </ul>
+    <div class="modal-info">
+      <div class="modal-duration">
+        <span>Duration:</span>
+        <span class="duration-hour-number"></span>
+        <span>hour</span>
+        <span class="duration-min-number"></span>
+        <span>mins</span>
+      </div>
   
-  
-  <script src="js/jquery-3.5.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+      <div class="modal-lang">
+        <span>Language:</span>
+        <span class="modal-lang"></span>
+      </div>
+    </div>
+
+    <button class="modal-close-btn">Close</button>
+  </section>
+ 
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/movies-new.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  </html>
