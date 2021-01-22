@@ -482,3 +482,7 @@ body {
 .sort-item:focus {
   outline: 0;
 }
+
+.pagination {
+  flex-wrap: wrap;
+}

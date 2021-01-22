@@ -47,7 +47,16 @@ var elNoResult = $_('.no-result ');
 var elPagination = $_('.pagination');
 var elCount = $_('.result-count');
 
-var elSorting = $_('.sort-list')
+var elSorting = $_('.sort-list');
+
+var elModal = $_('.modal-section');
+var elModalTitle = $_('.modal-title');
+var elModalSummary = $_('.modal-summary');
+var elModalHour = $_('.duration-hour-number');
+var elModalMin = $_('.duration-min-number');
+var elModalLang = $_('.modal-lang');
+var elModalCloseBtn = $_('.modal-close-btn');
+
 
 // Push category names from movie object to categories array
 for (var movie of movies) {
@@ -143,6 +152,7 @@ createMovieCard = movie => {
   elMovie.querySelector('.movie-thumbnail').alt = `Poster of ${movie.title}`;
   elMovie.querySelector('.movie-year').textContent = movie.year;
   elMovie.querySelector('.movie-rating').textContent = movie.imdbRating;
+  elMovie.querySelector('.more-info-link').dataset.imdbId = movie.imdbId;
   
   var elMovieTitle = elMovie.querySelector('.movie-title').textContent = movie.title;
   
@@ -232,67 +242,89 @@ elPagination.addEventListener('click', evt => {
 });
 
 $_('.az-button').addEventListener('click', () => {
-    var sorting = $_('.az-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.az-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
 
 $_('.za-button').addEventListener('click', () => {
-    var sorting = $_('.za-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.za-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
 
 $_('.newer-button').addEventListener('click', () => {
-    var sorting = $_('.newer-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.newer-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
 
 $_('.older-button').addEventListener('click', () => {
-    var sorting = $_('.older-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.older-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
 
 $_('.higher-button').addEventListener('click', () => {
-    var sorting = $_('.higher-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.higher-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
 
 $_('.lower-button').addEventListener('click', () => {
-    var sorting = $_('.lower-button').dataset.value;
-    
-    elMoviesList.innerHTML = '';
-    
-    sortMovies(foundMovies, sorting);
-    displayMovies(getPage(1));
-    displayPagination(foundMovies)
-    console.log('ishladi')
+  var sorting = $_('.lower-button').dataset.value;
+  
+  elMoviesList.innerHTML = '';
+  
+  sortMovies(foundMovies, sorting);
+  displayMovies(getPage(1));
+  displayPagination(foundMovies)
+  console.log('ishladi')
 });
+
+elMoviesList.addEventListener('click', evt => {
+  if (evt.target.matches('.more-info-link')) {
+    elModal.classList.remove('d-none');
+    var movie = foundMovies.find(movie => movie.imdbId === evt.target.dataset.imdbId);
+    var movieRuntime = movie.runtime;
+    var movieHour = Math.floor(movie.runtime / 60)
+    var movieMin = movieRuntime - (movieHour * 60);
+
+    elModalTitle.textContent = movie.title;
+    elModalSummary .textContent = movie.summary;
+    elModalHour.textContent = movieHour;
+    elModalMin.textContent = movieMin;
+    elModalLang.textContent = movie.language;
+    // elModalCloseBtn.textContent = movie.title
+    console.log(movie);
+  }
+});
+
+elModalCloseBtn.addEventListener('click', () =>  elModal.classList.add('d-none'));
+
+// add-bookmark-btn
