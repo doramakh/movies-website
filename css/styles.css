@@ -486,3 +486,30 @@ body {
 .pagination {
   flex-wrap: wrap;
 }
+
+.bookmark-result {
+  position: absolute;
+  z-index: 11;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  padding: 30px 70px;
+  background-color: lightgrey;
+  color: #444;
+}
+
+.bookmark-btn {
+  position: relative;
+}
+
+.bookmark-number {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ffc107;
+  color: midnightblue;
+  border-radius: 50%;
+  top: -45%;
+  right: -8px;
+}

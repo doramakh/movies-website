@@ -20,11 +20,14 @@ var createElement = function (element, elementClass, text) {
 
 // GLOBAL VARIABLES
 
+var localBookmarks = JSON.parse(localStorage.getItem("bookmarkedMovies"));
+
 var ITEMS_PER_PAGE = 8;
 // variable for user input (title) source
 var titleRegex = '';
 var categories = [];
 // var foundMovies = [];
+var bookmarks = localBookmarks || [];
 
 // create an array of top 100 movies
 var foundMovies = movies.slice().sort((a,b) => b.imdbRating - a.imdbRating).slice(0, 100);
@@ -57,6 +60,9 @@ var elModalMin = $_('.duration-min-number');
 var elModalLang = $_('.modal-lang');
 var elModalCloseBtn = $_('.modal-close-btn');
 
+var elBookmarkCounter = $_('.bookmark-number');
+
+
 
 // Push category names from movie object to categories array
 for (var movie of movies) {
@@ -75,6 +81,21 @@ for (var category of categories) {
   
   elCategorySelect.appendChild(categoryOption);
 } 
+
+var updateBookmarkedMovieNumbers = () => elBookmarkCounter.textContent = bookmarks.length;
+updateBookmarkedMovieNumbers();
+
+var addMovieToBookmarks = (movie) => {
+  bookmarks.push(movie)
+  localStorage.setItem("bookmarkMovies", JSON.stringify(bookmarks));
+  updateBookmarkedMovieNumbers();
+};
+
+var removeMovieFromBookmarks = (startIndex) => {
+  bookmarks.splice(startIndex, 1)
+  localStorage.setItem("bookmarkMovies", JSON.stringify(bookmarks));
+  updateBookmarkedMovieNumbers();
+};
 
 // FUNCTIONS 
 
@@ -153,6 +174,7 @@ createMovieCard = movie => {
   elMovie.querySelector('.movie-year').textContent = movie.year;
   elMovie.querySelector('.movie-rating').textContent = movie.imdbRating;
   elMovie.querySelector('.more-info-link').dataset.imdbId = movie.imdbId;
+  elMovie.querySelector('.add-bookmark-btn').dataset.imdbId = movie.imdbId;
   
   var elMovieTitle = elMovie.querySelector('.movie-title').textContent = movie.title;
   
@@ -320,11 +342,28 @@ elMoviesList.addEventListener('click', evt => {
     elModalHour.textContent = movieHour;
     elModalMin.textContent = movieMin;
     elModalLang.textContent = movie.language;
-    // elModalCloseBtn.textContent = movie.title
+    
     console.log(movie);
   }
 });
 
 elModalCloseBtn.addEventListener('click', () =>  elModal.classList.add('d-none'));
 
-// add-bookmark-btn
+elMoviesList.addEventListener('click', evt => {
+  if (evt.target.matches('.add-bookmark-btn')) {
+    var movie = foundMovies.find(movie => movie.imdbId === evt.target.dataset.imdbId);
+    
+    $_('.bookmark-result').classList.remove('d-none');
+    setTimeout( () => {$_('.bookmark-result').classList.add('d-none')}, 1800);
+
+    if (!bookmarks.includes(movie)) {
+      addMovieToBookmarks(movie);
+      $_('.bookmark-result').textContent = `${movie.title} is successfully added to the bookmarks`;
+      $_('.add-bookmark-btn').textContent = 'Remove'
+    } else {
+      removeMovieFromBookmarks(movie);
+      $_('.bookmark-result').textContent = `${movie.title} is successfully removed from the bookmarks`;
+      $_('.add-bookmark-btn').textContent = 'Bookmark'
+    }
+  }
+});

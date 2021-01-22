@@ -26,7 +26,10 @@
       </form>
       
       <div class="site-header__buttons">
-        <button type="button" class="site-header__button bookmark-btn">Bookmarks</button>
+        <button type="button" class="site-header__button bookmark-btn">
+          <span>Bookmarks</span>
+          <span class="bookmark-number">1</span>
+        </button>
         <button type="button" class="site-header__button">Log in</button>
         <button type="button" class="site-header__button">Sign up</button>
       </div>
@@ -88,6 +91,9 @@
     <button class="modal-close-btn">Close</button>
   </section>
 
+  <div class="bookmark-result d-none">Lorem ipsum dolor sit amet.
+  </div>
+
   <template class="movie-card-template">
     <li class="movies-item">
       <a class="movie-link" href="#">
@@ -103,7 +109,7 @@
       <div class="movie-secondary">
         <a class="movie-secondary-link more-info-link alert-danger" href="#">More info</a>
         <a class="movie-secondary-link trailer-link alert-success" href="#">Watch trailer</a>
-        <button class="movie-secondary-link add-bookmark-btn alert-primary">Bookmark</button>
+        <button class="movie-secondary-link add-bookmark-btn alert-primary" data-imdb-id="">Bookmark</button>
       </div>
     </li>
   </template>
