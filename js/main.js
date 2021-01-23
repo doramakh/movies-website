@@ -179,7 +179,7 @@ createMovieCard = movie => {
   } else {
     elMovieTitle.innerHTML = movie.title.replace(titleRegex, `<mark class="px-0">${movie.title.match(titleRegex)}</mark>`);
   }
-
+  
   bookmarks.forEach((bookmark) => {
     if (bookmark.imdbId === movie.imdbId) {
       $_(".add-bookmark-btn", elMovie).textContent = 'Remove';
@@ -355,7 +355,7 @@ elMoviesList.addEventListener('click', evt => {
   if (evt.target.matches('.add-bookmark-btn')) {
     var movie = foundMovies.find(movie => movie.imdbId === evt.target.dataset.imdbId);
     var startIndex = bookmarks.findIndex(movie => movie.imdbId === evt.target.dataset.imdbId);
-
+    
     $_('.bookmark-result').classList.remove('d-none');
     setTimeout( () => {$_('.bookmark-result').classList.add('d-none')}, 1800);
     
@@ -370,12 +370,14 @@ elMoviesList.addEventListener('click', evt => {
       $_('.bookmark-result').textContent = `${movie.title} is successfully removed from the bookmarks`;
       evt.target.textContent = 'Bookmark'
     }
-
+    
     localStorage.setItem("bookmarkedMovies", JSON.stringify(bookmarks));
   }
 });
 
 elBookmarkOpenButton.addEventListener('click', () => {
+  $_('.result-count__wrapper').classList.add('d-none');
+  
   displayMovies(getBookmarkPage(1));
   displayPagination(bookmarks);
 })
