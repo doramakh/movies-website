@@ -379,6 +379,10 @@ body {
   margin-right: auto;
 }
 
+.pagination {
+  justify-content: center;
+}
+
 .page-link {
   transition: 0.3s background-color ease-in-out;
 }
@@ -512,4 +516,12 @@ body {
   border-radius: 50%;
   top: -45%;
   right: -8px;
+}
+
+.site-header__button:focus {
+  outline: 0;
+}
+
+.site-header__button:active {
+  opacity: 0.6;
 }

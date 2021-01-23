@@ -28,6 +28,7 @@ var titleRegex = '';
 var categories = [];
 // var foundMovies = [];
 var bookmarks = localBookmarks || [];
+console.log(bookmarks);
 
 // create an array of top 100 movies
 var foundMovies = movies.slice().sort((a,b) => b.imdbRating - a.imdbRating).slice(0, 100);
@@ -60,8 +61,9 @@ var elModalMin = $_('.duration-min-number');
 var elModalLang = $_('.modal-lang');
 var elModalCloseBtn = $_('.modal-close-btn');
 
+var elAddBookmarkBtn = $_('.add-bookmark-btn')
 var elBookmarkCounter = $_('.bookmark-number');
-
+var elBookmarkOpenButton = $_('.bookmark-btn')
 
 
 // Push category names from movie object to categories array
@@ -84,18 +86,6 @@ for (var category of categories) {
 
 var updateBookmarkedMovieNumbers = () => elBookmarkCounter.textContent = bookmarks.length;
 updateBookmarkedMovieNumbers();
-
-var addMovieToBookmarks = (movie) => {
-  bookmarks.push(movie)
-  localStorage.setItem("bookmarkMovies", JSON.stringify(bookmarks));
-  updateBookmarkedMovieNumbers();
-};
-
-var removeMovieFromBookmarks = (startIndex) => {
-  bookmarks.splice(startIndex, 1)
-  localStorage.setItem("bookmarkMovies", JSON.stringify(bookmarks));
-  updateBookmarkedMovieNumbers();
-};
 
 // FUNCTIONS 
 
@@ -166,6 +156,12 @@ var getPage = pageNumber => {
   return foundMovies.slice(startIndex, endIndex);
 };
 
+var getBookmarkPage = pageNumber => {
+  var startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+  var endIndex = startIndex + ITEMS_PER_PAGE;
+  return bookmarks.slice(startIndex, endIndex);
+};
+
 createMovieCard = movie => {
   elMovie = elMovieCardTemplate.cloneNode(true);
   
@@ -183,6 +179,12 @@ createMovieCard = movie => {
   } else {
     elMovieTitle.innerHTML = movie.title.replace(titleRegex, `<mark class="px-0">${movie.title.match(titleRegex)}</mark>`);
   }
+
+  bookmarks.forEach((bookmark) => {
+    if (bookmark.imdbId === movie.imdbId) {
+      $_(".add-bookmark-btn", elMovie).textContent = 'Remove';
+    }
+  });
   
   return elMovie;
 };
@@ -336,7 +338,7 @@ elMoviesList.addEventListener('click', evt => {
     var movieRuntime = movie.runtime;
     var movieHour = Math.floor(movie.runtime / 60)
     var movieMin = movieRuntime - (movieHour * 60);
-
+    
     elModalTitle.textContent = movie.title;
     elModalSummary .textContent = movie.summary;
     elModalHour.textContent = movieHour;
@@ -352,18 +354,28 @@ elModalCloseBtn.addEventListener('click', () =>  elModal.classList.add('d-none')
 elMoviesList.addEventListener('click', evt => {
   if (evt.target.matches('.add-bookmark-btn')) {
     var movie = foundMovies.find(movie => movie.imdbId === evt.target.dataset.imdbId);
-    
+    var startIndex = bookmarks.findIndex(movie => movie.imdbId === evt.target.dataset.imdbId);
+
     $_('.bookmark-result').classList.remove('d-none');
     setTimeout( () => {$_('.bookmark-result').classList.add('d-none')}, 1800);
-
-    if (!bookmarks.includes(movie)) {
-      addMovieToBookmarks(movie);
+    
+    if (startIndex === -1) {
+      bookmarks.push(movie);
+      updateBookmarkedMovieNumbers();
       $_('.bookmark-result').textContent = `${movie.title} is successfully added to the bookmarks`;
-      $_('.add-bookmark-btn').textContent = 'Remove'
+      evt.target.textContent = 'Remove'
     } else {
-      removeMovieFromBookmarks(movie);
+      bookmarks.splice(startIndex, 1)
+      updateBookmarkedMovieNumbers();
       $_('.bookmark-result').textContent = `${movie.title} is successfully removed from the bookmarks`;
-      $_('.add-bookmark-btn').textContent = 'Bookmark'
+      evt.target.textContent = 'Bookmark'
     }
+
+    localStorage.setItem("bookmarkedMovies", JSON.stringify(bookmarks));
   }
 });
+
+elBookmarkOpenButton.addEventListener('click', () => {
+  displayMovies(getBookmarkPage(1));
+  displayPagination(bookmarks);
+})
