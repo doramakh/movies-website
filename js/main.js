@@ -21,7 +21,6 @@ var createElement = function (element, elementClass, text) {
 // GLOBAL VARIABLES
 
 var localBookmarks = JSON.parse(localStorage.getItem("bookmarkedMovies"));
-
 var ITEMS_PER_PAGE = 8;
 // variable for user input (title) source
 var titleRegex = '';
@@ -60,7 +59,7 @@ var elModalHour = $_('.duration-hour-number');
 var elModalMin = $_('.duration-min-number');
 var elModalLang = $_('.modal-lang');
 var elModalCloseBtn = $_('.modal-close-btn');
-
+var isBookmarkList = false;
 var elAddBookmarkBtn = $_('.add-bookmark-btn')
 var elBookmarkCounter = $_('.bookmark-number');
 var elBookmarkOpenButton = $_('.bookmark-btn')
@@ -224,7 +223,7 @@ displayPagination(foundMovies);
 
 elSearchForm.addEventListener('submit', evt => {
   evt.preventDefault();
-  
+  isBookmarkList = false;
   titleRegex = new RegExp(elTitleInput.value, 'gi');
   var genre = elCategorySelect.value;
   
@@ -267,6 +266,7 @@ elPagination.addEventListener('click', evt => {
 
 $_('.az-button').addEventListener('click', () => {
   var sorting = $_('.az-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -278,6 +278,7 @@ $_('.az-button').addEventListener('click', () => {
 
 $_('.za-button').addEventListener('click', () => {
   var sorting = $_('.za-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -289,6 +290,7 @@ $_('.za-button').addEventListener('click', () => {
 
 $_('.newer-button').addEventListener('click', () => {
   var sorting = $_('.newer-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -300,6 +302,7 @@ $_('.newer-button').addEventListener('click', () => {
 
 $_('.older-button').addEventListener('click', () => {
   var sorting = $_('.older-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -311,6 +314,7 @@ $_('.older-button').addEventListener('click', () => {
 
 $_('.higher-button').addEventListener('click', () => {
   var sorting = $_('.higher-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -322,6 +326,7 @@ $_('.higher-button').addEventListener('click', () => {
 
 $_('.lower-button').addEventListener('click', () => {
   var sorting = $_('.lower-button').dataset.value;
+  isBookmarkList = false;
   
   elMoviesList.innerHTML = '';
   
@@ -367,17 +372,20 @@ elMoviesList.addEventListener('click', evt => {
     } else {
       bookmarks.splice(startIndex, 1)
       updateBookmarkedMovieNumbers();
-      $_('.bookmark-result').textContent = `${movie.title} is successfully removed from the bookmarks`;
+      $_('.bookmark-result').textContent = `Successfully removed from the bookmarks`;
       evt.target.textContent = 'Bookmark'
     }
-    
+    if (isBookmarkList) {
+      displayMovies(getBookmarkPage(1));
+      displayPagination(bookmarks);
+    }
     localStorage.setItem("bookmarkedMovies", JSON.stringify(bookmarks));
   }
 });
 
 elBookmarkOpenButton.addEventListener('click', () => {
   $_('.result-count__wrapper').classList.add('d-none');
-  
+  isBookmarkList = true;
   displayMovies(getBookmarkPage(1));
   displayPagination(bookmarks);
-})
+});
